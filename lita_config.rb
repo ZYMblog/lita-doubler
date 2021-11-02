@@ -15,18 +15,21 @@ Lita.configure do |config|
   # What is considered a user ID will change depending on which adapter you use.
   # config.robot.admins = ["1", "2"]
 
+  heroku config:set SLACK_API_KEY="xoxb-2691343475409-2672047749158-caD5vG9zNl9rTxwEMHjWF9pF"
   # The adapter you want to connect with. Make sure you've added the
   # appropriate gem to the Gemfile.
-  if ENV['RACK_ENV'] == 'production'
+  # if ENV['RACK_ENV'] == 'production'
+    # config.robot.adapter = :slack
+    # config.redis[:url] = ENV.fetch('REDIS_URL')
+  if ENV.fetch('RACK_ENV','development') == 'production' do
     config.robot.adapter = :slack
-    config.redis[:url] = ENV.fetch('REDIS_URL')
+    config.adapters.slack.token = ENV.fetch('SLACK_API_KEY','')
   else
     config.robot.adapter = :shell
   end
-
   # slack adapter demands a value even in dev when we aren't using it...
   config.adapter.slack.token = ENV.fetch('SLACK_TOKEN','')
-
+  
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
   # config.adapter.password = "secret"
