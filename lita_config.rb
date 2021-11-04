@@ -18,8 +18,10 @@ Lita.configure do |config|
   # The adapter you want to connect with. Make sure you've added the
   # appropriate gem to the Gemfile.
   if ENV['RACK_ENV'] == 'production'
-    config.robot.adapter = :slack
+    # config.robot.adapter = :slack
     config.redis[:url] = ENV.fetch('REDIS_URL')
+    config.robot.adapter = :slack
+    config.adapters.slack.token = "xoxb-2710354971184-2680037939702-uSzrsbjBH4FHuZgfpmKzX0ES"
   else
     config.robot.adapter = :shell
   end
