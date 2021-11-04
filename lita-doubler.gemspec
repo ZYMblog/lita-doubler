@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-  spec.name          = "lita-doubler-zhao"
+  spec.name          = "lita-doubler"
   spec.version       = "0.1.0"
   spec.authors       = ["ZYMblog"]
   spec.email         = ["zzhaoyiman@gmail.com"]
